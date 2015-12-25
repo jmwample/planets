@@ -3,6 +3,8 @@
 from __future__ import print_function
 from PIL import Image
 import sys
+from novas import compat as novas
+from novas.compat import eph_manager
 
 
 
