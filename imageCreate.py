@@ -10,6 +10,7 @@ from novas.compat import eph_manager
 PI=math.pi
 imW = 1280
 imH = 800
+rightW = imW-imH
 fill=True
 
 # http://omniweb.gsfc.nasa.gov/coho/helios/planet.html
@@ -18,14 +19,14 @@ def main():
     im = Image.new('RGBA', (imW,imH), '#333333')
     draw = ImageDraw.Draw(im)
     setup(draw)
-    mercury(draw)
-    venus(draw)
-    earth(draw)
-    mars(draw)
     jupiter(draw)
     saturn(draw)
     uranus(draw)
     neptune(draw)
+    earth(draw)
+    venus(draw)
+    mars(draw)
+    mercury(draw)
     pluto(draw)
 
 
@@ -49,6 +50,9 @@ def setup(draw):
                   imH/2+sunRad, imH/2+sunRad), fill='black')
     # draw.ellipse((imH/2-sunRad+2, imH/2-sunRad+2,
     #               imH/2+sunRad-2, imH/2+sunRad-2), fill='#333333')
+    sunRad=20
+    draw.ellipse((imH+rightW/2-sunRad, imH/2-sunRad,
+                  imH+rightW/2+sunRad, imH/2+sunRad), fill='black')
 
 def mercury(draw):
     # draw mercury
@@ -57,14 +61,26 @@ def mercury(draw):
     Rad=4
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def venus(draw):
@@ -74,14 +90,26 @@ def venus(draw):
     Rad=7
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def earth(draw):
@@ -91,14 +119,26 @@ def earth(draw):
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=10
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
-    if (fill): 
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
+    if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def mars(draw):
@@ -108,14 +148,26 @@ def mars(draw):
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=8
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
-    if (fill):              
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
+    if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def jupiter(draw):
@@ -125,14 +177,26 @@ def jupiter(draw):
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=33
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def saturn(draw):
@@ -142,14 +206,26 @@ def saturn(draw):
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=26
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def uranus(draw):
@@ -159,14 +235,26 @@ def uranus(draw):
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=22
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 def neptune(draw):
@@ -176,32 +264,57 @@ def neptune(draw):
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=18
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+
     
 
 def pluto(draw):
     # draw pluto
-    dist = 375
+    dist = 372
     angle = 3*PI/2
     X=dist*math.cos(angle)
     Y=-dist*math.sin(angle)
     Rad=3
+    # dark helio orbit
     draw.ellipse((imH/2-X-Rad, 
                   imH/2-Y-Rad, 
                   imH/2-X+Rad,
                   imH/2-Y+Rad), fill='black')
+    # dark declination with sun as observer              
+    draw.ellipse((imH+rightW/2-Rad, 
+                  imH/2-Y-Rad, 
+                  imH+rightW/2+Rad,
+                  imH/2-Y+Rad), fill='black')
     if (fill):
+        # helio orbit fill
         draw.ellipse((imH/2-X-Rad+2, 
                   imH/2-Y-Rad+2, 
                   imH/2-X+Rad-2,
+                  imH/2-Y+Rad-2), fill='#333333')
+        # declination fill          
+        draw.ellipse((imH+rightW/2-Rad+2, 
+                  imH/2-Y-Rad+2, 
+                  imH+rightW/2+Rad-2,
                   imH/2-Y+Rad-2), fill='#333333')
 
 
