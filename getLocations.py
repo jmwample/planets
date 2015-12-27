@@ -3,6 +3,7 @@
 import imageCreate
 from imageCreate import setup, Planet
 
+from datetime import datetime as dt
 import math
 from novas import compat as novas
 from novas.compat import eph_manager
@@ -12,10 +13,16 @@ import sys
 
 
 
+
 def main():
     jd=[0,0]
     jd_start, jd_end, number = eph_manager.ephem_open()
-    jd_tt = novas.julian_date(2015, 12, 26, 11.0)
+    target = dt.now()
+    doubleHour = target.minute/60.0 + target.second/3600.0 + target.hour
+    # print '%d, %d, %d, %f, %d' % (target.year, target.month, 
+    #                              target.day, doubleHour, target.minute)
+    jd_tt = novas.julian_date(target.year, target.month, 
+                              target.day, doubleHour)
     jd=(jd_tt, 0.0) # approximating jd_tdb as jd_tt for this use
     
     draw, im = imageCreate.setup()
@@ -45,11 +52,11 @@ def main():
     planets = [mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto]
     for body in planets:
         pos, vel = novas.ephemeris(jd, body.planet, 1, 1)
-        angle = math.atan(pos[0]/pos[1])
-        body.draw(draw, angle, body.dist, body.Rad)
-        print body.planet.name
-        print '\tPos x %.2f   y %.2f   z %.2f   ang %.2f' % (pos[0], pos[1], pos[2], angle) 
-        print '\tdistance %.2f' % (body.dist)
+        #angle = math.atan(pos[0]/pos[1])
+        body.draw(draw, pos, body.dist, body.Rad)
+        #print body.planet.name
+        #print '\tPos x %.2f; y %.2f: z %.2f; ang %.2f' % (pos[0], pos[1], pos[2], angle))
+        #print '\tdistance %.2f' % (body.dist)
 
     im.save('drawing.png')
     im.show()

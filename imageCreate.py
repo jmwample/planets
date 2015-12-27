@@ -68,18 +68,15 @@ class Planet:
         self.Rad = rad
         self.planet = novas.make_object(0, num, name, None)
 
-    def draw(self, draw, theta, dist, Rad):
-        X=dist*math.cos(theta)
-        Y=dist*math.sin(theta)
+    def draw(self, draw, pos, dist, Rad):
+        theta = math.atan(pos[0]/pos[1])
+        X = dist*math.cos(theta)
+        Y = dist*math.sin(theta)
+        Z = pos[2]
         # dark helio orbit
         draw.ellipse((imH/2-X-Rad,
                       imH/2-Y-Rad,
                       imH/2-X+Rad,
-                      imH/2-Y+Rad), fill='black')
-        # dark declination with sun as observer
-        draw.ellipse((imH+rightW/2-Rad,
-                      imH/2-Y-Rad,
-                      imH+rightW/2+Rad,
                       imH/2-Y+Rad), fill='black')
         if (fill):
             # helio orbit fill
@@ -87,10 +84,17 @@ class Planet:
                       imH/2-Y-Rad+2,
                       imH/2-X+Rad-2,
                       imH/2-Y+Rad-2), fill='#333333')
+        if (Rad > 12 ): Rad=Rad/2
+        # dark declination with sun as observer
+        draw.ellipse((imH+rightW/2-Rad+Z,
+                      imH/2-Y-Rad,
+                      imH+rightW/2+Rad+Z,
+                      imH/2-Y+Rad), fill='black')
+        if (fill):
             # declination fill
-            draw.ellipse((imH+rightW/2-Rad+2,
+            draw.ellipse((imH+rightW/2-Rad+Z+2,
                       imH/2-Y-Rad+2,
-                      imH+rightW/2+Rad-2,
+                      imH+rightW/2+Rad+Z-2,
                       imH/2-Y+Rad-2), fill='#333333')
 
 
