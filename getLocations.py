@@ -44,7 +44,7 @@ def main():
         body.draw(draw, pos, body.dist, body.Rad)
         #print body.planet.name
 
-    im.save('drawing.png')
+    im.save('/Users/jmwample/Dev/planets/drawing.png')
 
 
 if __name__ == "__main__":

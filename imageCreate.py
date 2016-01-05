@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import PIL
 from PIL import Image, ImageDraw
 import sys
 import math
